@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/zhangqi/Desktop/work/dev-crm/node_modules/react-native-baidu-map/android/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/icon_gcoding.png",
+        "source": "/Users/zhangqi/Desktop/work/dev-crm/node_modules/react-native-baidu-map/android/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/icon_gcoding.png"
+    },
+    {
+        "merged": "/Users/zhangqi/Desktop/work/mobile-crm/node_modules/react-native-baidu-map/android/build/intermediates/res/merged/androidTest/debug/mipmap-hdpi-v4/icon_gcoding.png",
+        "source": "/Users/zhangqi/Desktop/work/mobile-crm/node_modules/react-native-baidu-map/android/build/intermediates/bundles/debug/res/mipmap-hdpi-v4/icon_gcoding.png"
+    }
+]

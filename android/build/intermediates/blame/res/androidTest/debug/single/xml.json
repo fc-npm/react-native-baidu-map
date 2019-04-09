@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/zhangqi/Desktop/work/dev-crm/node_modules/react-native-baidu-map/android/build/intermediates/res/merged/androidTest/debug/xml/preferences.xml",
+        "source": "/Users/zhangqi/Desktop/work/dev-crm/node_modules/react-native-baidu-map/android/build/intermediates/exploded-aar/com.facebook.react/react-native/0.54.0/res/xml/preferences.xml"
+    },
+    {
+        "merged": "/Users/zhangqi/Desktop/work/mobile-crm/node_modules/react-native-baidu-map/android/build/intermediates/res/merged/androidTest/debug/xml/preferences.xml",
+        "source": "/Users/zhangqi/Desktop/work/mobile-crm/node_modules/react-native-baidu-map/android/build/intermediates/exploded-aar/com.facebook.react/react-native/0.54.0/res/xml/preferences.xml"
+    }
+]
