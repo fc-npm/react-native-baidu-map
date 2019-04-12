@@ -1,32 +1,4 @@
 {
-  "_args": [
-    [
-      "react-native-baidu-map@0.5.0",
-      "/Users/zhangqi/Desktop/work/dev-crm"
-    ]
-  ],
-  "_from": "react-native-baidu-map@0.5.0",
-  "_id": "react-native-baidu-map@0.5.0",
-  "_inBundle": false,
-  "_integrity": "sha512-cF47F5T1cPigPUXR3HdwuoLDcFaFPlVhSsmtSSTjb8IY8i57BzRd2rk0y41r4CMTQGFIM8SCjw1/2MtJLzyyIQ==",
-  "_location": "/react-native-baidu-map",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "react-native-baidu-map@0.5.0",
-    "name": "react-native-baidu-map",
-    "escapedName": "react-native-baidu-map",
-    "rawSpec": "0.5.0",
-    "saveSpec": null,
-    "fetchSpec": "0.5.0"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "http://59.110.159.14:8085/repository/npm-all/react-native-baidu-map/-/react-native-baidu-map-0.5.0.tgz",
-  "_spec": "0.5.0",
-  "_where": "/Users/zhangqi/Desktop/work/dev-crm",
   "author": {
     "name": "lovebing -FC"
   },
@@ -45,7 +17,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "push":"npm publish --registry=http://59.110.159.14:8085/repository/npm-crm/"
+    "push": "npm publish --registry=http://59.110.159.14:8085/repository/npm-crm/"
   },
-  "version": "0.5.1"
+  "version": "0.5.2"
 }
