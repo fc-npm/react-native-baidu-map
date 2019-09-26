@@ -47,6 +47,7 @@ public class GeolocationModule extends BaseModule
     option.setIsNeedAltitude(true);
     option.setIsNeedLocationDescribe(true);
     option.setOpenGps(true);
+    option.disableCache(true);
     locationClient = new LocationClient(context.getApplicationContext());
     locationClient.setLocOption(option);
     Log.i("locationClient", "locationClient");
@@ -81,9 +82,9 @@ public class GeolocationModule extends BaseModule
 
   @ReactMethod
   public void getCurrentPosition() {
-    // if (locationClient == null) {
+    if (locationClient == null) {
       initLocationClient();
-    // }
+    }
     Log.i("getCurrentPosition", "getCurrentPosition");
     locationClient.start();
   }
