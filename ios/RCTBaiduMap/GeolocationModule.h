@@ -6,11 +6,24 @@
 //  Copyright © 2016年 lovebing.org. All rights reserved.
 //
 
-#import <BaiduMapAPI_Location/BMKLocationService.h>
+#ifndef GeolocationModule_h
+#define GeolocationModule_h
 
+
+#import <BMKLocationkit/BMKLocationComponent.h>
+#import <BaiduMapAPI_Search/BMKGeoCodeSearch.h>
+#import <BaiduMapAPI_Map/BMKOfflineMap.h>
 #import "BaseModule.h"
-#import "RCTBaiduMapViewManager.h"
+#import "BaiduMapViewManager.h"
 
-@interface GeolocationModule : BaseModule <BMKGeoCodeSearchDelegate> 
+@interface GeolocationModule : BaseModule <BMKGeoCodeSearchDelegate, BMKLocationManagerDelegate>
 
+@property (nonatomic) BMKLocationManager *locationManager;
+@property (nonatomic) bool locating;
+
+- (void)sendEvent:(NSString *)name body:(NSMutableDictionary *)body;
+- (NSMutableDictionary *)getEmptyBody;
+    
 @end
+
+#endif /* GeolocationModule_h */

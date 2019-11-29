@@ -1,22 +1,27 @@
 {
-  "author": {
-    "name": "lovebing -FC"
+  "name": "react-native-baidu-map",
+  "version": "1.0.26-backportRN054",
+  "description": "Baidu Map SDK modules and views for React Native(Android & iOS), support react native 0.61+. 百度地图 React Native 模块，支持 react native 0.54+，已更新到最新的百度地图 SDK 版本。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
-  "description": "Baidu Map SDK modules and view for React Native(Android & IOS), support react native 0.40+.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lovebing/react-native-baidu-map.git"
+  },
   "keywords": [
     "Baidu Map",
     "React Native"
   ],
-  "license": "ISC",
-  "main": "index.js",
-  "name": "react-native-baidu-map",
-  "publishConfig": {
-    "registry": "http://59.110.159.14:8085/repository/npm-crm/"
+  "author": "lovebing",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lovebing/react-native-baidu-map/issues"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "0.5.4"
+  "homepage": "https://github.com/lovebing/react-native-baidu-map#readme",
+  "devDependencies": {
+    "react": "16.6.1",
+    "react-native": "^0.57.5"
+  }
 }

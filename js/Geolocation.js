@@ -1,10 +1,15 @@
-// @flow
+/**
+ * Copyright (c) 2016-present, lovebing.org.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 import {
   requireNativeComponent,
   NativeModules,
   Platform,
-  NativeEventEmitter
+  DeviceEventEmitter
 } from 'react-native';
 
 import React, {
@@ -14,7 +19,17 @@ import React, {
 
 
 const _module = NativeModules.BaiduGeolocationModule;
-const geoLocationEmitter = new NativeEventEmitter(_module);
+
+const _locatingUpdateListener = {
+  listener: null,
+  handler: null,
+  onLocationUpdate: (resp) => {
+    this.listener && this.listener(resp);
+  },
+  setListener: (listener) => {
+    this.listener = listener;
+  }
+}
 
 export default {
   geocode(city, addr) {
@@ -26,12 +41,13 @@ export default {
         reject(e);
         return;
       }
-
-      const subscription = geoLocationEmitter.addListener('onGetGeoCodeResult', resp => {
+      DeviceEventEmitter.once('onGetGeoCodeResult', resp => {
         resolve(resp);
-        subscription.remove();
-      })
+      });
     });
+  },
+  convertGPSCoor(lat, lng) {
+    return _module.convertGPSCoor(lat, lng);
   },
   reverseGeoCode(lat, lng) {
     return new Promise((resolve, reject) => {
@@ -42,10 +58,8 @@ export default {
         reject(e);
         return;
       }
-
-      const subscription = geoLocationEmitter.addListener('onGetReverseGeoCodeResult', resp => {
+      DeviceEventEmitter.once('onGetReverseGeoCodeResult', resp => {
         resolve(resp);
-        subscription.remove();
       });
     });
   },
@@ -58,58 +72,58 @@ export default {
         reject(e);
         return;
       }
-
-      const subscription = geoLocationEmitter.addListener('onGetReverseGeoCodeResult', resp => {
+      DeviceEventEmitter.once('onGetReverseGeoCodeResult', resp => {
         resp.latitude = parseFloat(resp.latitude);
         resp.longitude = parseFloat(resp.longitude);
         resolve(resp);
-
-        subscription.remove();
       });
     });
   },
-  getCurrentPosition() {
-    if (Platform.OS == 'ios') {
-      return new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition((position) => {
-          try {
-            _module.reverseGeoCodeGPS(position.coords.latitude, position.coords.longitude);
-          }
-          catch (e) {
-            reject(e);
-            return;
-          }
-
-          const subscription = geoLocationEmitter.addListener('onGetReverseGeoCodeResult', resp => {
-            resp.latitude = parseFloat(resp.latitude);
-            resp.longitude = parseFloat(resp.longitude);
-            resolve(resp);
-
-            subscription.remove();
-          })
-        }, (error) => {
-          reject(error);
-        }, {
-          enableHighAccuracy: true,
-          timeout: 20000,
-          maximumAge: 1000
-        });
-      });
+  getCurrentPosition(coorType) {
+    if (!coorType) {
+      coorType = 'bd09ll';
+    } else {
+      coorType = coorType.toLowerCase();
     }
+    
     return new Promise((resolve, reject) => {
       try {
-        _module.getCurrentPosition();
+        _module.getCurrentPosition(coorType);
       }
       catch (e) {
         reject(e);
         return;
       }
-
-      const subscription = geoLocationEmitter.addListener('onGetCurrentLocationPosition', resp => {
+      DeviceEventEmitter.once('onGetCurrentLocationPosition', resp => {
+        if (!resp.address) {
+          resp.address = `${resp.province} ${resp.city} ${resp.district} ${resp.streetName}`;
+        }
         resolve(resp);
-
-        subscription.remove();
-      })
+      });
     });
+  },
+  startLocating(listener, coorType) {
+    if (!coorType) {
+      coorType = 'bd09ll';
+    } else {
+      coorType = coorType.toLowerCase();
+    }
+    _module.startLocating(coorType);
+    if (_locatingUpdateListener.handler == null) {
+      _locatingUpdateListener.handler = DeviceEventEmitter.addListener('onLocationUpdate', resp => {
+        if (!resp.address) {
+          resp.address = `${resp.province} ${resp.city} ${resp.district} ${resp.streetName}`;
+        }
+        _locatingUpdateListener.onLocationUpdate(resp);
+      });
+    }
+    _locatingUpdateListener.setListener(listener);
+  },
+  stopLocating() {
+    _module.stopLocating();
+    if (_locatingUpdateListener.handler != null) {
+      _locatingUpdateListener.handler.remove();
+      _locatingUpdateListener.handler = null;
+    }
   }
 };

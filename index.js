@@ -1,22 +1,25 @@
+/**
+ * Copyright (c) 2016-present, lovebing.org.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import {
-  requireNativeComponent,
-  View,
-  NativeModules,
-  Platform,
-  DeviceEventEmitter
+  NativeModules
 } from 'react-native';
 
-import React, {
-  Component,
-  PropTypes
-} from 'react';
-
-import _MapTypes from './js/MapTypes';
 import _MapView from './js/MapView';
-import _MapModule from './js/MapModule';
+import _MapTypes from './js/MapTypes';
 import _Geolocation from './js/Geolocation';
+import _GetDistance from './js/GetDistance';
+import _Overlay from './js/Overlay/index';
 
-export const MapTypes = _MapTypes;
 export const MapView = _MapView;
-export const MapModule = _MapModule;
+export const MapTypes = _MapTypes;
 export const Geolocation = _Geolocation;
+export const GetDistance = _GetDistance;
+export const Overlay = _Overlay;
+export const MapApp = NativeModules.BaiduMapAppModule;
+
+export const BaiduMapManager = NativeModules.BaiduMapManager;
